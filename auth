@@ -1,0 +1,29 @@
+import com.codeborne.selenide.Condition;
+import org.junit.Test;
+
+import static com.codeborne.selenide.Selenide.*;
+
+public class auth {
+
+    @Test
+    public void auth(){
+ // Ввести Логин:
+        open("https://ilswebreact-develop.azurewebsites.net/");
+        $x("//div[@class='ant-form-item-control-input-content']//input[@id='login']")
+                .setValue("rekame2869@seinfaq.com")
+                .shouldBe(Condition.value("rekame2869@seinfaq.com"));
+// Ввести Пароль:
+        $x("//div[@class='ant-form-item-control-input-content']//input[@id='password']")
+                .setValue("XRCa91zn4fsJzcHW")
+                .shouldBe(Condition.value("XRCa91zn4fsJzcHW"));
+// Нажать на кнопку Войти:
+        $x("//div[@class='ant-form-item-control-input-content']//button[@type='submit']")
+                .shouldBe(Condition.visible)
+                .click();
+// Проверка класса, который находится в ЛК, чтобы убедиться, что авторизация выполнена:
+        $x("//div[@class='react-customscroll-frame']")
+        .shouldBe(Condition.visible);
+
+    }
+
+}
